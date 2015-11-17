@@ -11,7 +11,7 @@ ssh:
     - group: root
     - mode: 644
 
-    - source: salt://ssh/sshd_config
+    - source: salt://core/ssh/sshd_config
     - template: jinja
     - context:
         port: {{ pillar['remote_access']['ssh_port'] }}

@@ -1,7 +1,7 @@
 {% set duckdns_script = '/usr/local/bin/duckdns.sh' %}
 
 include:
-  - users.task_runner
+  - core.users.task_runner
 
 duckdns:
   pkg.installed:

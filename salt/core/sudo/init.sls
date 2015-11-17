@@ -8,5 +8,7 @@ sudo:
     - group: root
     - mode: 440
 
+    - source: salt://core/sudo/sudoers
+
     - require:
       - group: sudo
