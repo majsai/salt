@@ -1,4 +1,3 @@
 remote_access:
   ssh_port: 22
   enable_root_with_key: True
-  proxy_user: proxy-user
