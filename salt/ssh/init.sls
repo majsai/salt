@@ -3,7 +3,7 @@ ssh:
     - installed
   group:
     - present
-    - name: {{ pillar['core']['ssh_group'] }}
+    - name: ssh
 
 /etc/ssh/sshd_config:
   file.managed:
@@ -14,8 +14,7 @@ ssh:
     - source: salt://ssh/sshd_config
     - template: jinja
     - context:
-        port: {{ pillar['core']['ssh_port'] }}
-        group: {{ pillar['core']['ssh_group'] }}
+        port: {{ pillar['remote_access']['ssh_port'] }}
 
     - require:
       - pkg: ssh

@@ -15,8 +15,15 @@ dev:
 
 proxy_user:
   user.present:
-    - name: {{ pillar['core']['proxy_user'] }}
-    - shell: /bin/sh
+    - name: {{ pillar['remote_access']['proxy_user'] }}
     - createhome: False
     - require:
       - group: ssh
+
+root:
+  user:
+    - present
+    {% if pillar['remote_access']['enable_root_with_key'] %}
+    - require:
+      - group: ssh
+    {% endif %}
