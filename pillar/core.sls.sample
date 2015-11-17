@@ -1,0 +1,7 @@
+core:
+  ssh_port: 22
+  ssh_group: ssh
+
+  sudo_group: sudo
+
+  proxy_user: proxy-user
