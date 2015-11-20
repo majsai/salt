@@ -1,4 +1,4 @@
-{{ set version = pillar['minecraft']['version'] }}
+{% set version = pillar['minecraft']['version'] %}
 
 curl:
   pkg:
