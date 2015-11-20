@@ -35,6 +35,9 @@ openjdk-8-jre-headless:
       online_mode: {{ pillar['minecraft']['online_mode'] }}
       enable_command_block: {{ pillar['minecraft']['enable_command_block'] }}
 
+    - require:
+      - file: /srv/minecraft
+
 download-minecraft-server:
   cmd.run:
     - name: curl -L https://s3.amazonaws.com/Minecraft.Download/versions/{{ version }}/minecraft_server.{{ version }}.jar -o /srv/minecraft/server.jar
@@ -53,6 +56,6 @@ download-minecraft-server:
     - source: salt://minecraft/start-minecraft-server.sh
 
     - require:
-      - download-minecraft-server
+      - cmd: download-minecraft-server
       - pkg: openjdk-8-jre-headless
 
