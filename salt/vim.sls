@@ -1,4 +1,4 @@
-vim:
+vim-nox:
   pkg:
     - installed
 
