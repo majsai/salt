@@ -1,3 +1,9 @@
+# pillar variables
+# --
+# duckdns:
+#   token: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+#   domain: example
+
 {% set duckdns_script = '/usr/local/bin/duckdns.sh' %}
 
 include:

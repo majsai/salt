@@ -1,3 +1,10 @@
+# pillar variables
+# --
+# minecraft:
+#   version: 1.8.8
+#   online_mode: true
+#   enable_command_bock: false
+
 {% set version = pillar['minecraft']['version'] %}
 
 curl:

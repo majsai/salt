@@ -1,3 +1,7 @@
+# pillar variables:
+# --
+# vimrc_repo: git@github.com:akarasz/vimrc.git
+
 vim-nox:
   pkg:
     - installed

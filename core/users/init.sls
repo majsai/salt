@@ -1,7 +1,13 @@
+# pillar variables
+# --
+# ssh:
+#   enable_root_with_key: True
+# users:
+#   proxy: proxy-user
 root:
   user:
     - present
-    {% if pillar['remote_access']['enable_root_with_key'] %}
+    {% if pillar['ssh']['enable_root_with_key'] %}
     - groups:
       - ssh
 

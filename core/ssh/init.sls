@@ -1,3 +1,8 @@
+# pillar variables
+# --
+# ssh:
+#   port: 22
+
 ssh:
   pkg:
     - installed
@@ -14,7 +19,7 @@ ssh:
     - source: salt://core/ssh/sshd_config
     - template: jinja
     - context:
-        port: {{ pillar['remote_access']['ssh_port'] }}
+        port: {{ pillar['ssh']['port'] }}
 
     - require:
       - pkg: ssh
