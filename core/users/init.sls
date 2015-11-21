@@ -4,6 +4,7 @@
 #   enable_root_with_key: True
 # users:
 #   proxy: proxy-user
+
 root:
   user:
     - present
