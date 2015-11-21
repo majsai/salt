@@ -1,2 +1,1 @@
-salt/top.sls
-pillar/**/*.sls
+/top.sls
