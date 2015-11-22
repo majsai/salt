@@ -11,6 +11,10 @@ curl:
   pkg:
     - installed
 
+screen:
+  pkg:
+    - installed
+
 openjdk-8-jre-headless:
   pkg:
     - installed
@@ -65,4 +69,4 @@ download-minecraft-server:
     - require:
       - cmd: download-minecraft-server
       - pkg: openjdk-8-jre-headless
-
+      - pkg: screen
