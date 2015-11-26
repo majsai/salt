@@ -27,7 +27,7 @@ LogLevel INFO
 LoginGraceTime 120
 PermitRootLogin without-password
 StrictModes yes
-AllowGroups {{ group }}
+AllowGroups ssh
 
 RSAAuthentication yes
 PubkeyAuthentication yes
