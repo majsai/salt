@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+
+set timeout -1
+
+spawn ./steamcmd.sh
+
+expect "Steam>" { send "login anonymous\r" }
+expect "Steam>" { send "force_install_dir /home/steam/steamapps/DST\r" }
+expect "Steam>" { send "app_update 343050 validate\r" }
+expect "Steam>" { send "quit\r" }

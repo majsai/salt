@@ -2,6 +2,9 @@ sudo:
   group:
     - present
 
+  pkg:
+    - installed
+
 /etc/sudoers:
   file.managed:
     - user: root
