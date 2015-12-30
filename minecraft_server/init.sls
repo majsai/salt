@@ -29,7 +29,7 @@ openjdk-8-jre-headless:
     - group: root
     - mode: 644
 
-    - source: salt://minecraft/eula.txt
+    - source: salt://minecraft_server/eula.txt
 
     - require:
       - file: /srv/minecraft
@@ -40,7 +40,7 @@ openjdk-8-jre-headless:
     - group: root
     - mode: 644
 
-    - source: salt://minecraft/server.properties
+    - source: salt://minecraft_server/server.properties
     - template: jinja
     - context:
       online_mode: {{ pillar['minecraft']['online_mode'] }}
@@ -64,7 +64,7 @@ download-minecraft-server:
     - group: root
     - mode: 755
 
-    - source: salt://minecraft/start-minecraft-server.sh
+    - source: salt://minecraft_server/start-minecraft-server.sh
 
     - require:
       - cmd: download-minecraft-server
