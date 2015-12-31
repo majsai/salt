@@ -27,13 +27,9 @@ steam:
     - createhome: True
     - home: /home/steam
 
-  group:
-    - present
-
 /home/steam/steamcmd:
   file.directory:
     - user: steam
-    - group: steam
     
     - makedirs: True
 
@@ -43,7 +39,6 @@ steam:
 /home/steam/.klei/DoNotStarveTogether:
   file.directory:
     - user: steam
-    - group: steam
 
     - makedirs: True
  
@@ -54,7 +49,6 @@ steam:
 /home/steam/.klei/DoNotStarveTogether/server_token.txt:
   file.managed:
     - user: steam
-    - group: steam
     - mode: 644
 
     - contents_pillar: dst_server:server_token
@@ -66,7 +60,6 @@ steam:
 /home/steam/.klei/DoNotStarveTogether/settings.ini:
   file.managed:
     - user: steam
-    - group: steam
     - mode: 644
 
     - source: salt://dst_server/settings.ini
@@ -94,13 +87,11 @@ steamcmd.download:
     - unless: ls -la /home/steam/steamcmd/steamcmd_linux.tar.gz
 
     - user: steam
-    - group: steam
 
     - require:
       - file: /home/steam/steamcmd
       - pkg: curl
       - user: steam
-      - group: steam
 
     - require_in:
       - steamcmd.install
@@ -111,7 +102,6 @@ steamcmd.install:
     - unless: ls -la /home/steam/steamcmd/steamcmd.sh
 
     - user: steam
-    - group: steam
     - cwd: /home/steam/steamcmd
 
 expect:
@@ -124,7 +114,6 @@ dst.install:
     - unless: ls -la /home/steam/steamapps/DST/bin/dontstarve_dedicated_server_nullrenderer
    
     - user: steam
-    - group: steam
     - cwd: /home/steam/steamcmd
 
     - require:
@@ -138,7 +127,6 @@ screen:
 /usr/local/bin/start-dst-server.sh:
   file.managed:
     - user: root
-    - group: root
     - mode: 755
     
     - source: salt://dst_server/start-dst-server.sh
