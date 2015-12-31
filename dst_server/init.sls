@@ -45,13 +45,13 @@ steam:
     - require:
       - user: steam
 
-{% if pillar['dst'] is defined and pillar['dst']['server_key'] is defined %}
+{% if pillar['dst_server'] is defined and pillar['dst_server']['server_key'] is defined %}
 /home/steam/.klei/DoNotStarveTogether/server_token.txt:
   file.managed:
     - user: steam
     - mode: 644
 
-    - contents_pillar: dst_server:server_token
+    - contents_pillar: dst_server:server_key
 
     - require:
       - file: /home/steam/.klei/DoNotStarveTogether
@@ -104,6 +104,10 @@ steamcmd.install:
     - user: steam
     - cwd: /home/steam/steamcmd
 
+dnsmasq:
+  pkg:
+    - installed
+
 expect:
   pkg:
     - installed
@@ -118,6 +122,7 @@ dst.install:
 
     - require:
       - pkg: expect
+      - pkg: dnsmasq
       - cmd: steamcmd.install
 
 screen:
