@@ -1,10 +1,29 @@
 #!/usr/bin/expect
 
 set timeout -1
+set max_retry 5
 
 spawn ./steamcmd.sh
 
 expect "Steam>" { send "login anonymous\r" }
 expect "Steam>" { send "force_install_dir /home/steam/steamapps/DST\r" }
 expect "Steam>" { send "app_update 343050 validate\r" }
+
+set retry 0
+while { $retry < $max_retry } {
+  expect {
+    "Success" { break }
+    "Error"   { expect "Steam>" { send "app_update 343050 validate\r" }
+                incr retry
+    }
+  }
+}
+
 expect "Steam>" { send "quit\r" }
+
+if { $retry == $max_retry } {
+  exit 1
+} else {
+  exit 0
+}
+
