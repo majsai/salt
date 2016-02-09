@@ -1,0 +1,75 @@
+local:
+----------
+          ID: tree
+    Function: pkg.installed
+      Result: True
+     Comment: Package tree is already installed
+     Changes:   
+----------
+          ID: prerequisites
+    Function: pkg.installed
+      Result: True
+     Comment: All specified packages are already installed.
+     Changes:   
+----------
+          ID: /etc/openvpn/server.conf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/openvpn/server.conf is in the correct state
+     Changes:   
+----------
+          ID: portforward
+    Function: cmd.run
+        Name: echo 1 > /proc/sys/net/ipv4/ip_forward
+      Result: True
+     Comment: unless execution succeeded
+     Changes:   
+----------
+          ID: /etc/sysctl.conf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/sysctl.conf is in the correct state
+     Changes:   
+----------
+          ID: firewall.install
+    Function: pkg.installed
+      Result: True
+     Comment: All specified packages are already installed.
+     Changes:   
+----------
+          ID: firewall.config.ssh
+    Function: cmd.run
+        Name: ufw allow ssh
+      Result: True
+     Comment: unless execution succeeded
+     Changes:   
+----------
+          ID: firewall.config.openvpn
+    Function: cmd.run
+        Name: ufw allow 1194/udp
+      Result: True
+     Comment: unless execution succeeded
+     Changes:   
+----------
+          ID: firewall.enable
+    Function: cmd.run
+        Name: ufw enable
+      Result: True
+     Comment: Command "ufw enable" run
+     Changes:   
+              ----------
+              pid:
+                  6870
+              retcode:
+                  0
+              stderr:
+                  
+              stdout:
+                  Firewall is active and enabled on system startup
+
+Summary
+------------
+Succeeded: 9
+Failed:    0
+------------
+Total:     9
