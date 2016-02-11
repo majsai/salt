@@ -55,28 +55,32 @@ firewall.enable:
 
 /etc/openvpn/dh2048.pem:
   file.managed:
-    - source: pillar['openvpn']['cert']['pem']
+    - source: {{ pillar['openvpn']['cert']['pem'] }}
+    - source_hash: {{ pillar['openvpn']['cert']['pem'] }}.hash
     
     - require:
       - pkg: openvpn
      
 /etc/openvpn/server.key:
   file.managed:
-    - source: pillar['openvpn']['cert']['key']
+    - source: {{ pillar['openvpn']['cert']['key'] }}
+    - source_hash: {{ pillar['openvpn']['cert']['key'] }}.hash
     
     - require:
       - pkg: openvpn
 
 /etc/openvpn/server.crt:
   file.managed:
-    - source: pillar['openvpn']['cert']['crt']
+    - source: {{ pillar['openvpn']['cert']['crt'] }}
+    - source_hash: {{ pillar['openvpn']['cert']['crt'] }}.hash
     
     - require:
       - pkg: openvpn
 
 /etc/openvpn/ca.crt:
   file.managed:
-    - source: pillar['openvpn']['cert']['ca']
+    - source: {{ pillar['openvpn']['cert']['ca'] }}
+    - source_hash: {{ pillar['openvpn']['cert']['ca'] }}.hash
     
     - require:
       - pkg: openvpn
