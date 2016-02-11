@@ -1,15 +1,13 @@
-prerequisites:
-  pkg.installed:
-    - pkgs:
-      - openvpn
-      - easy-rsa
-
+openvpn:
+  pkg:
+    - installed
+      
 /etc/openvpn/server.conf:
   file.managed:
     - source: salt://openvpn/server.conf
 
     - require:
-      - pkg: prerequisites
+      - pkg: openvpn
 
 portforward:
   cmd.run:
@@ -52,3 +50,44 @@ firewall.enable:
     - require:
       - cmd: firewall.config.ssh
       - cmd: firewall.config.openvpn
+
+#FAJLOK LETOLTESE ES BEMASOLASA
+
+/etc/openvpn/dh2048.pem:
+  file.managed:
+    - source: pillar['openvpn']['cert']['pem']
+    
+    - require:
+      - pkg: openvpn
+     
+/etc/openvpn/server.key:
+  file.managed:
+    - source: pillar['openvpn']['cert']['key']
+    
+    - require:
+      - pkg: openvpn
+
+/etc/openvpn/server.crt:
+  file.managed:
+    - source: pillar['openvpn']['cert']['crt']
+    
+    - require:
+      - pkg: openvpn
+
+/etc/openvpn/ca.crt:
+  file.managed:
+    - source: pillar['openvpn']['cert']['ca']
+    
+    - require:
+      - pkg: openvpn
+
+vpn.start:
+  cmd.run:
+    - name: systemctl openvpn start
+    - unless:  systemctl is-active openvpn | grep -P "active"
+
+    - require:
+      - file: /etc/openvpn/server.crt
+      - file: /etc/openvpn/server.key
+      - file: /etc/openvpn/dh2048.pem
+      - file: /etc/openvpn/ca.crt
