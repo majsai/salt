@@ -15,7 +15,7 @@ portforward:
   cmd.run:
     - name: echo 1 > /proc/sys/net/ipv4/ip_forward
     - unless: cat /proc/sys/net/ipv4/ip_forward | grep "1"
-    
+
     - require_in:
       - pkg: firewall.install
 
@@ -32,7 +32,7 @@ firewall.config.ssh:
   cmd.run:
     - name: ufw allow ssh
     - unless: ufw status | grep -P "^22[ ]+ALLOW[ ]+Anywhere$"
-    
+
     - require:
       - pkg: firewall.install
 
@@ -40,15 +40,15 @@ firewall.config.openvpn:
   cmd.run:
     - name: ufw allow 1194/udp
     - unless: ufw status | grep -P "^1194/udp[ ]+ALLOW[ ]+Anywhere$"
-    
+
     - require:
       - pkg: firewall.install
-      
+
 firewall.enable:
   cmd.run:
     - name: ufw enable
-    - unless: ufw status | grep -P "Status. inactive"
-    
+    - unless: ufw status | grep -Pv "Status. inactive"
+
     - require:
       - cmd: firewall.config.ssh
       - cmd: firewall.config.openvpn
